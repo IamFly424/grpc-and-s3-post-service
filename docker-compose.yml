@@ -1,0 +1,37 @@
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: iamfly
+      POSTGRES_PASSWORD: iamfly
+      POSTGRES_DB: test
+    ports:
+      - 5433:5432
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    networks:
+      - backend
+
+  s3-service:
+    container_name: s3-service
+    image: s3-service:latest
+    ports:
+      - 9060:9060
+    networks:
+      - backend
+
+  reactive-service:
+    container_name: reactive-service
+    image: reactive-service:latest
+    ports:
+      - 8083:8083
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
+
+volumes:
+  postgres:

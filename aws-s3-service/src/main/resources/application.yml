@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: s3-service
+cloud:
+  aws:
+    region:
+      static: eu-north-1
+    credentials:
+      access-key: *
+      secret-key: *
+

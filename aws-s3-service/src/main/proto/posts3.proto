@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package posts3;
+
+message UploadImageRequest {
+  string bucketName = 1;
+  string keyName = 2;
+  bytes fileData = 3;
+  string filePath = 4;
+}
+
+message UploadImageResponse {
+  string message = 1;
+}
+
+message DownloadImageRequest {
+  string bucketName = 1;
+  string keyName = 2;
+}
+
+message DownloadImageResponse {
+  string message = 1;
+}
+
+service S3Service {
+  rpc UploadImage(UploadImageRequest) returns (UploadImageResponse);
+
+  rpc DownloadImage(DownloadImageRequest) returns (DownloadImageResponse);
+}
+
+
